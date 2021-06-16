@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from "react-native";
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { Home } from "../screens"
 import { COLORS, FONTS, icons } from "../constants"
@@ -74,6 +74,22 @@ const Tabs = () => {
             <Tab.Screen
                 name="Transaction"
                 component={Home}
+                options = {{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{ alignItems: 'center', justifyContent: "center" }}>
+                            <Image 
+                                source={icons.transaction}
+                                resizeMode='contain'
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    tintColor: focused ? COLORS.primary : COLORS.black
+                                }}
+                            />
+                            <Text style={{color: focused ? COLORS.primary : COLORS.black, ...FONTS.body5}}>取引</Text>
+                        </View>
+                    ) 
+                }}
             />
             <Tab.Screen
                 name="Prices"
